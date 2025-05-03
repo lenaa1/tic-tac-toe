@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lottie {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.grid{
+        position: absolute;
+        width: 264px;
+        height: 264px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+}
