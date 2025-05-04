@@ -1,5 +1,5 @@
-import cross from './../assets/cross.json';
-import oval from './../assets/oval.json';
+import cross from '../../assets/cross.json';
+import oval from '../../assets/oval.json';
 import Lottie from 'lottie-react';
 import './cell.css';
 

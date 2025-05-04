@@ -1,14 +1,12 @@
-import './App.css'
-import { Board } from './board/board';
-
+import './App.css';
+import { Board } from './components/board/board';
 
 function App() {
-
-  return (
-    <>
-      <Board />
-    </>
-  )
+    return (
+        <>
+            <Board />
+        </>
+    );
 }
 
-export default App
+export default App;

@@ -1,22 +1,27 @@
-import grid from './../assets/grid.json';
+import grid from '../../assets/grid.json';
 import Lottie from 'lottie-react';
-import { Cell } from '../components/Cell';
+import { Cell } from '../cell/Cell';
 import { useEffect, useState } from 'react';
 import './board.css';
-import { useComputerMove } from '../hooks/useComputerMove';
-import { useCheckWinner } from '../hooks/useCheckWinner';
+import { useComputerMove } from '../../hooks/useComputerMove';
+import { useCheckWinner } from '../../hooks/useCheckWinner';
 
 export function Board() {
-
     const [winners, setWinner] = useState<number[] | null>(null);
 
     const [isComputerTurn, setComputerTurn] = useState<boolean>(false);
 
     const [array, setArray] = useState<(string | null)[]>(Array(9).fill(null));
 
-    const computerMove = useComputerMove({array, setArray});
+    const computerMove = useComputerMove({ array, setArray });
 
-    const checkWinner = useCheckWinner({array, setArray, winners, setWinner, setComputerTurn})
+    const checkWinner = useCheckWinner({
+        array,
+        setArray,
+        winners,
+        setWinner,
+        setComputerTurn,
+    });
 
     useEffect(() => {
         if (isComputerTurn && (!winners || winners.length === 0)) {
