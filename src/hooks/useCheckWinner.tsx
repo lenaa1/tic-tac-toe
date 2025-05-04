@@ -23,7 +23,7 @@ export function useCheckWinner({
             newBoard[4] = 'cross';
             setArray([...newBoard]);
             setComputerTurn(false);
-        }, 1500);
+        }, 1000);
     };
 
     const checkWinner = () => {

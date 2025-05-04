@@ -2,7 +2,7 @@
     animation: blink 2s ease-in-out;
 }
 
-@keyframes blink{
+@keyframes blink {
     0%,
     100% {
         opacity: 1;
@@ -12,8 +12,13 @@
     }
 }
 
-.cell {
+.cell__wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cell {
+    width: 70px;
+    height: 70px;
 }

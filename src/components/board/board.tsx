@@ -27,17 +27,6 @@ export function Board() {
     });
 
     useEffect(() => {
-        if (isComputerTurn && (!winners)) {
-            const timer = setTimeout(() => {
-                computerMove();
-                setComputerTurn(false);
-            }, 500);
-
-            return () => clearTimeout(timer);
-        }
-    }, [isComputerTurn]);
-
-    useEffect(() => {
         const timer = setTimeout(() => {
             const newBoard = [...array];
             newBoard[4] = 'cross';
@@ -47,6 +36,17 @@ export function Board() {
 
         return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        if (isComputerTurn && (!winners)) {
+            const timer = setTimeout(() => {
+                computerMove();
+                setComputerTurn(false);
+            }, 500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [isComputerTurn]);
 
     useEffect(() => {
         checkWinner();

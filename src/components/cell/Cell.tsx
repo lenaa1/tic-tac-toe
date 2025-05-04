@@ -22,7 +22,7 @@ export function Cell({
     isComputerTurn,
     setComputerTurn,
     winner,
-    setWillFade
+    setWillFade,
 }: CellProps) {
     function handleClick(index: number) {
         if (array[index] == null && !isComputerTurn) {
@@ -33,7 +33,6 @@ export function Cell({
         }
     }
 
-
     let cell;
 
     if (array[index] == 'oval') {
@@ -43,22 +42,18 @@ export function Cell({
     }
 
     return (
-        <div className="cell" onClick={() => handleClick(index)}>
+        <div className="cell__wrapper" onClick={() => handleClick(index)}>
             {status != null ? (
                 <div
-                    style={{
-                        width: 70,
-                        height: 70,
-                    }}
-                    className={winner ? 'blink' : ''}
+                    className={`cell ${winner ? 'blink' : ''}`}
                     onAnimationEnd={() => {
                         setWillFade(true);
-                      }}
+                    }}
                 >
                     {cell}
                 </div>
             ) : (
-                <div style={{ width: 85, height: 85 }}></div>
+                <div className='cell'></div>
             )}
         </div>
     );
