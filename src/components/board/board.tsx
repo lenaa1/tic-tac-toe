@@ -13,6 +13,8 @@ export function Board() {
 
     const [array, setArray] = useState<(string | null)[]>(Array(9).fill(null));
 
+    const [willFade, setWillFade] = useState<boolean>(false);
+
     const computerMove = useComputerMove({ array, setArray });
 
     const checkWinner = useCheckWinner({
@@ -21,10 +23,11 @@ export function Board() {
         winners,
         setWinner,
         setComputerTurn,
+        setWillFade
     });
 
     useEffect(() => {
-        if (isComputerTurn && (!winners || winners.length === 0)) {
+        if (isComputerTurn && (!winners)) {
             const timer = setTimeout(() => {
                 computerMove();
                 setComputerTurn(false);
@@ -54,7 +57,7 @@ export function Board() {
             <div className="lottie">
                 <Lottie animationData={grid} loop={false} />
             </div>
-            <div className="grid">
+            <div className={`grid ${willFade ? 'fade-out' : ''}`}>
                 {array.map((el, index) => (
                     <Cell
                         winner={winners?.includes(index)}
@@ -64,6 +67,7 @@ export function Board() {
                         index={index}
                         isComputerTurn={isComputerTurn}
                         setComputerTurn={setComputerTurn}
+                        setWillFade={setWillFade}
                     />
                 ))}
             </div>

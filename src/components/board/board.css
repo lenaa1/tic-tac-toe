@@ -18,3 +18,16 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
 }
+
+.fade-out {
+    animation: fadeOut 1s forwards;
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }

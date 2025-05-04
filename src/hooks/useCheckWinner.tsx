@@ -4,6 +4,7 @@ type CheckWinnerProps = {
     winners: number[] | null;
     setWinner: React.Dispatch<React.SetStateAction<number[] | null>>;
     setComputerTurn: React.Dispatch<React.SetStateAction<boolean>>;
+    setWillFade: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function useCheckWinner({
@@ -12,6 +13,7 @@ export function useCheckWinner({
     winners,
     setWinner,
     setComputerTurn,
+    setWillFade,
 }: CheckWinnerProps) {
     const resetGame = () => {
         const newBoard = Array(9).fill(null);
@@ -36,24 +38,31 @@ export function useCheckWinner({
             [2, 4, 6],
         ];
 
+        let hasWinner = false;
+
         for (let line of lines) {
             const [a, b, c] = line;
             if (array[a] && array[a] === array[b] && array[a] === array[c]) {
                 setWinner([a, b, c]);
-                setComputerTurn(false);
-                setTimeout(() => {
-                    resetGame();
-                }, 3500);
-                return;
+                WinAnimation(3000);
+                hasWinner = true;
+                break;
             }
         }
-        if (!array.includes(null) && winners == null) {
-            setComputerTurn(false);
-            setTimeout(() => {
-                resetGame();
-            }, 2000);
+
+        if (!hasWinner && !array.includes(null) && winners == null) {
+            setWillFade(true);
+            WinAnimation(2000);
         }
     };
+
+    function WinAnimation(time: number) {
+        setComputerTurn(false);
+        setTimeout(() => {
+            resetGame();
+            setWillFade(false);
+        }, time);
+    }
 
     return checkWinner;
 }

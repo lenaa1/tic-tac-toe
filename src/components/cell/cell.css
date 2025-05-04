@@ -1,16 +1,14 @@
-.highlight {
-    animation: blink 2s infinite;
+.blink {
+    animation: blink 2s ease-in-out;
 }
 
-@keyframes blink {
-    0% {
+@keyframes blink{
+    0%,
+    100% {
         opacity: 1;
     }
     50% {
         opacity: 0;
-    }
-    100% {
-        opacity: 1;
     }
 }
 

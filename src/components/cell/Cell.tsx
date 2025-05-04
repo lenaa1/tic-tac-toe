@@ -11,6 +11,7 @@ type CellProps = {
     isComputerTurn: boolean;
     setComputerTurn: React.Dispatch<React.SetStateAction<boolean>>;
     winner: boolean | undefined;
+    setWillFade: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function Cell({
@@ -21,6 +22,7 @@ export function Cell({
     isComputerTurn,
     setComputerTurn,
     winner,
+    setWillFade
 }: CellProps) {
     function handleClick(index: number) {
         if (array[index] == null && !isComputerTurn) {
@@ -30,6 +32,7 @@ export function Cell({
             setComputerTurn(true);
         }
     }
+
 
     let cell;
 
@@ -47,7 +50,10 @@ export function Cell({
                         width: 70,
                         height: 70,
                     }}
-                    className={winner ? 'highlight' : ''}
+                    className={winner ? 'blink' : ''}
+                    onAnimationEnd={() => {
+                        setWillFade(true);
+                      }}
                 >
                     {cell}
                 </div>
